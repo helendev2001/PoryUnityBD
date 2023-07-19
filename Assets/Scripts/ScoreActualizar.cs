@@ -18,6 +18,11 @@ public class ScoreActualizar : MonoBehaviour
     {
         GestionUsuario.singleton.actualizarScore(int.Parse(txtNScore.text));
     }
+    public void eliminarUsuario()
+    {
+        GestionUsuario.singleton.eliminarUsuario();
+
+    }
     // Update is called once per frame
     void Update()
     {

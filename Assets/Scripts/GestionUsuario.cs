@@ -43,6 +43,10 @@ public class GestionUsuario : MonoBehaviour
     {
         StartCoroutine(Actualizar(nScore));
     }
+    public void eliminarUsuario()
+    {
+        StartCoroutine(Eliminar());
+    }
 
     IEnumerator Login()
     {
@@ -129,6 +133,27 @@ public class GestionUsuario : MonoBehaviour
         {
             print("Datos actualizados correctamente");
             scoreUsuario = nScore;
+        }
+        else
+        {
+            Debug.LogError("ERROS!! en la conexion en la BD");
+        }
+
+    }
+
+    IEnumerator Eliminar()
+    {
+        WWW conexion = new WWW("http://localhost/Conexion/eliminar.php?uss=" + txtUsuario.text);
+        yield return (conexion);
+
+        if (conexion.text == "401")
+        {
+            print("Usuario no existe!!");
+        }
+        else if (conexion.text == "202")
+        {
+            print("Eliminado exitosamente");
+            SceneManager.LoadScene("SampleScene");
         }
         else
         {
